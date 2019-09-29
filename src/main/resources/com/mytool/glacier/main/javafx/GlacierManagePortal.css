@@ -1,0 +1,8 @@
+TableView#tbl_resultA .table-cell:selected {
+  -fx-border-color: green;
+  -fx-border-width: 2 2 1 1;
+}
+TableView#tbl_resultB .table-cell:selected { 
+  -fx-border-color: green;
+  -fx-border-width: 2 2 1 1;
+}

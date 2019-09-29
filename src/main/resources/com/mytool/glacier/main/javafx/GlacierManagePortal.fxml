@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<SplitPane fx:id="pane_root" dividerPositions="0.3110367892976589" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="524.0" prefWidth="864.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mytool.glacier.main.controller.GlacierManagePortalController">
+   <stylesheets>
+      <URL value="@GlacierManagePortal.css" />
+   </stylesheets>
+   <items>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="182.0" prefWidth="670.0">
+         <children>
+            <ToolBar layoutX="80.0" layoutY="-6.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                                    <Button mnemonicParsing="false" onAction="#doAwsConnInfoSetting" text="AWS Connection Setting" />
+              </items>
+            </ToolBar>
+                              <TableView fx:id="table_vault_list" layoutY="40.0" onMouseClicked="#onVaultSelected" prefHeight="143.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                <columns>
+                                  <TableColumn fx:id="tcol_vault_name" prefWidth="99.0" text="VaultName" />
+                                  <TableColumn fx:id="tcol_vault_arn" prefWidth="96.0" text="VaultARN" />
+                                    <TableColumn fx:id="tcol_vault_archives" prefWidth="66.0" text="Archives" />
+                                    <TableColumn fx:id="tcol_vault_size" minWidth="0.0" prefWidth="95.0" text="Size" />
+                                    <TableColumn fx:id="tcol_vault_create_date" prefWidth="155.0" text="CreateDate" />
+                                    <TableColumn fx:id="tcol_vault_last_inventory_date" prefWidth="116.0" text="LastInventoryDate" />
+                                </columns>
+                              </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TabPane layoutX="10.0" layoutY="12.0" prefHeight="367.0" prefWidth="626.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="Inventory">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                           <TableView fx:id="table_inventory_info" layoutY="36.0" onMouseClicked="#onArchiveTableClick" prefHeight="252.0" prefWidth="860.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="40.0">
+                             <columns>
+                               <TableColumn fx:id="tcol_archive_id" prefWidth="75.0" text="ID" />
+                               <TableColumn fx:id="tcol_archive_description" prefWidth="207.0" text="Description" />
+                                 <TableColumn fx:id="tcol_archive_size" prefWidth="122.0" text="Size" />
+                                 <TableColumn fx:id="tcol_archive_create_date" prefWidth="143.0" text="CreateDate" />
+                             </columns>
+                                 <padding>
+                                    <Insets top="1.0" />
+                                 </padding>
+                           </TableView>
+                              <ToolBar layoutX="50.0" layoutY="28.0" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <items>
+                                    <Label text="Byte Range" />
+                                    <ComboBox fx:id="cmb_retrieve_range_lvl" onAction="#onRangeLevelChange" prefWidth="150.0" />
+                                    <ComboBox fx:id="cmb_retrieve_range_val" prefWidth="150.0" />
+                                    <Label text="MB " />
+                                    <Button fx:id="btn_execute_retrieve" disable="true" mnemonicParsing="false" onAction="#onExecuteRetrieveJob" text="Execute retrieve Job" />
+                                    <Button fx:id="btn_remove_archive" disable="true" mnemonicParsing="false" onAction="#onExecuteRemoveArchiveJob" text="Remove archive" />
+                                 </items>
+                              </ToolBar>
+                              <ToolBar layoutX="1.0" prefHeight="40.0" prefWidth="850.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <Button mnemonicParsing="false" onAction="#onExecuteFileUpload" text="File Upload">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets></Button>
+                                    <Button mnemonicParsing="false" onAction="#onExecuteInventoryInfoGetJob" text="Execute Inventory info getting job" />
+                                </items>
+                              </ToolBar>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                <Tab text="JobList">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="table_job_info" layoutX="14.0" layoutY="14.0" onMouseClicked="#onJobListTableClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+                                <columns>
+                                  <TableColumn fx:id="tcol_job_id" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="tcol_job_description" prefWidth="166.0" text="Description" />
+                                    <TableColumn fx:id="tcol_job_action" prefWidth="105.0" text="Action" />
+                                    <TableColumn fx:id="tcol_job_creation_date" prefWidth="119.0" text="CreationDate" />
+                                    <TableColumn fx:id="tcol_job_completed" minWidth="0.0" prefWidth="119.0" text="Completed" />
+                                    <TableColumn fx:id="tcol_job_completion_date" prefWidth="125.0" text="CompletonDate" />
+                                    <TableColumn fx:id="tcol_job_status" prefWidth="73.0" text="Status" />
+                                    <TableColumn fx:id="tcol_job_retrieve_range" prefWidth="75.0" text="Range" />
+                                </columns>
+                              </TableView>
+                              <ToolBar layoutX="1.0" layoutY="340.0" prefHeight="40.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
+                                <items>
+                                  <Button fx:id="btn_execute_download" disable="true" mnemonicParsing="false" onAction="#onExecuteRetrietiveDownload" text="Execute download" />
+                                    <Button fx:id="btn_execute_refresh_inventory" disable="true" mnemonicParsing="false" onAction="#onExecuteRefreshInventory" text="RefreshInventory" />
+                                    <Button fx:id="btn_reload_jobinfo" mnemonicParsing="false" onAction="#onExecuteReloadJobInfo" text="Reload" />
+                                </items>
+                              </ToolBar>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </items>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</SplitPane>

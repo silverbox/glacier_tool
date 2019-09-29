@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mytool.common.controller.AwsConnInfoController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="614.0" prefWidth="647.0">
+         <children>
+            <RadioButton id="rb_aws_conn_default" fx:id="rb_aws_conn_default" layoutX="57.0" layoutY="152.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="275.0" selected="true" text="Default">
+               <toggleGroup>
+                  <ToggleGroup fx:id="rbg_conn_type" />
+               </toggleGroup></RadioButton>
+            <RadioButton id="rb_aws_conn_filespecify" fx:id="rb_aws_conn_filespecify" layoutX="57.0" layoutY="207.0" mnemonicParsing="false" text="Specity by profile file" toggleGroup="$rbg_conn_type" />
+            <RadioButton id="rb_aws_conn_direct" fx:id="rb_aws_conn_direct" layoutX="57.0" layoutY="375.0" mnemonicParsing="false" text="Direct specify (It will save to ini file. use with take care.)" toggleGroup="$rbg_conn_type" />
+            <Label layoutX="80.0" layoutY="239.0" text="Config file path" />
+            <TextField id="txt_aws_conn_config_file_path" fx:id="txt_aws_conn_config_file_path" layoutX="80.0" layoutY="256.0" prefHeight="25.0" prefWidth="454.0" promptText="~/.aws/credentials" />
+            <Label layoutX="80.0" layoutY="296.0" text="Profile name" />
+            <TextField id="txt_aws_conn_config_property_name" fx:id="txt_aws_conn_config_property_name" layoutX="80.0" layoutY="313.0" prefHeight="25.0" prefWidth="452.0" promptText="default" />
+            <TextField id="txt_aws_conn_access_key_id" fx:id="txt_aws_conn_access_key_id" layoutX="79.0" layoutY="421.0" prefHeight="25.0" prefWidth="454.0" promptText="input your AWS access key id" />
+            <Label layoutX="80.0" layoutY="404.0" text="Access key id" />
+            <Label layoutX="80.0" layoutY="459.0" text="Secret access key" />
+            <TextField id="txt_aws_conn_secret_access_key" fx:id="txt_aws_conn_secret_access_key" layoutX="79.0" layoutY="476.0" prefHeight="25.0" prefWidth="454.0" promptText="input your AWS secret access key" />
+            <Button id="btn_ok" layoutX="465.0" layoutY="530.0" mnemonicParsing="false" onAction="#onSaveBtnClick" prefHeight="35.0" prefWidth="69.0" text="OK" />
+            <Label layoutX="57.0" layoutY="42.0" text="Resion" />
+            <TextField fx:id="txt_aws_conn_config_region" layoutX="57.0" layoutY="59.0" />
+            <Label layoutX="57.0" layoutY="118.0" text="Connection type" />
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
